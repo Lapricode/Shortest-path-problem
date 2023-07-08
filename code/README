@@ -1,0 +1,3 @@
+The whole python code is contained inside the current folder.
+In order to run the program you have to only execute the python file "networks.py".
+You need the libraries “tkinter”, “pillow”, “random”, “time”, “os”, “numpy” and “pymprog”.
