@@ -516,13 +516,13 @@ class networks_app_window():
     
     def load_time_weight_image(self, time_weight_name):
         self.chosen_time_weight_image = Image.open(os.getcwd() + "/images/time_weights_images/" + time_weight_name + ".png")
-        self.chosen_time_weight_image = self.chosen_time_weight_image.resize((self.time_weights_images_canvas_width, self.time_weights_images_canvas_height), Image.ANTIALIAS)
+        self.chosen_time_weight_image = self.chosen_time_weight_image.resize((self.time_weights_images_canvas_width, self.time_weights_images_canvas_height), Image.LANCZOS)
         self.chosen_time_weight_image = ImageTk.PhotoImage(self.chosen_time_weight_image, master = self.root)
         self.time_weights_images_canvas.create_image(self.time_weights_images_canvas_width / 2 + 2, self.time_weights_images_canvas_height / 2 + 2, image = self.chosen_time_weight_image)
     
     def load_target_vertex_image(self, target_vertex_name):
         self.chosen_target_vertex_image = Image.open(os.getcwd() + "/images/target_vertices_images/" + target_vertex_name + ".png")
-        self.chosen_target_vertex_image = self.chosen_target_vertex_image.resize((self.target_vertices_images_canvas_width, self.target_vertices_images_canvas_height), Image.ANTIALIAS)
+        self.chosen_target_vertex_image = self.chosen_target_vertex_image.resize((self.target_vertices_images_canvas_width, self.target_vertices_images_canvas_height), Image.LANCZOS)
         self.chosen_target_vertex_image = ImageTk.PhotoImage(self.chosen_target_vertex_image, master = self.root)
         self.target_vertices_images_canvas.create_image(self.target_vertices_images_canvas_width / 2 + 2, self.target_vertices_images_canvas_height / 2 + 2, image = self.chosen_target_vertex_image)
 
@@ -1137,7 +1137,7 @@ class network_unit():
         self.has_time_weight_image = True
         self.time_weight_name = new_time_weight_name
         self.time_weight_image = Image.open(os.getcwd() + "/images/time_weights_images/" + self.time_weight_name + ".png")
-        self.time_weight_image = self.time_weight_image.resize((int(self.width / 1.4), int(self.height / 1.4)), Image.ANTIALIAS)
+        self.time_weight_image = self.time_weight_image.resize((int(self.width / 1.4), int(self.height / 1.4)), Image.LANCZOS)
         self.time_weight_image = ImageTk.PhotoImage(self.time_weight_image, master = networks_list[self.instance].root)
         self.grid_background.create_image((self.column + 1/2)* self.width + self.canvas_offset, (self.row + 1/2) * self.height + self.canvas_offset, image = self.time_weight_image)
         networks_list[self.instance].write_information_box("Info", "blue", f"Time weight \"{self.time_weight_name}\" with value {networks_list[self.instance].time_weights_values[self.time_weight_name]} was added to the edge unit ({self.row}, {self.column}).")
@@ -1148,7 +1148,7 @@ class network_unit():
             self.target_vertex_name = new_target_vertex_name
             networks_list[self.instance].target_vertices[(self.row, self.column)] = self.target_vertex_name
             self.target_vertex_image = Image.open(os.getcwd() + "/images/target_vertices_images/" + self.target_vertex_name + ".png")
-            self.target_vertex_image = self.target_vertex_image.resize((int(self.width / 1.4), int(self.height / 1.4)), Image.ANTIALIAS)
+            self.target_vertex_image = self.target_vertex_image.resize((int(self.width / 1.4), int(self.height / 1.4)), Image.LANCZOS)
             self.target_vertex_image = ImageTk.PhotoImage(self.target_vertex_image, master = networks_list[self.instance].root)
             self.grid_background.create_image((self.column + 1/2)* self.width + self.canvas_offset, (self.row + 1/2) * self.height + self.canvas_offset, image = self.target_vertex_image)
             networks_list[self.instance].write_information_box("Info", "blue", f"Target vertex \"{self.target_vertex_name}\" was added to the vertex unit ({self.row}, {self.column}).")
