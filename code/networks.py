@@ -240,7 +240,7 @@ class networks_app_window():
         menu_label(self.graph_info_menu, "Highlight:", f"Arial {graph_info_menu_font} bold", "#00ffff", graph_info_menu_bg_color, h_x * graph_info_menu_width, h_ord * graph_info_menu_height / (self.graph_info_menu_rows + 1))
         self.highlight_vertices_edges_button = menu_button(self.graph_info_menu, self.highlight_vertices_edges_mode, f"Calibri {graph_info_menu_font + 5} bold", "white", graph_info_menu_bg_color, (1 - h_x) * graph_info_menu_width, h_ord * graph_info_menu_height / (self.graph_info_menu_rows + 1), self.change_parameters_actions).button
         menu_label(self.graph_info_menu, "Display information: ", f"Arial {graph_info_menu_font} bold", "#00ffff", graph_info_menu_bg_color, di_x * graph_info_menu_width, di_ord * graph_info_menu_height / (self.graph_info_menu_rows + 1))
-        self.information_box = tk.Text(self.graph_info_menu, font = 'Calibri 10 bold', width = 40, height = 10)
+        self.information_box = tk.Text(self.graph_info_menu, font = 'Calibri 10 bold', width = 40, height = 10, wrap = "word")
         self.information_box.place(x = ib_x * graph_info_menu_width, y = ib_ord * graph_info_menu_height / (self.graph_info_menu_rows + 1), anchor = "center")
 
         # solve_problem_menu for solving the optimization problem
@@ -723,7 +723,7 @@ class networks_app_window():
                 measure_units = "m"
                 total_absolute_cost_ambulance_patient = round(self.grid_units_size * total_relative_cost_ambulance_patient, 2)
                 total_absolute_cost_patient_hospital = round(self.grid_units_size * total_relative_cost_patient_hospital, 2)
-            self.write_information_box("Solved", "green", f"Shortest paths found with {self.optimization_type} as an optimization criterion!"+\
+            self.write_information_box("Solved", "green", f"Shortest paths found with {self.optimization_type} being the optimization criterion!"+\
                                         f"\n1) Shortest path: ambulance → patient"+\
                                         f"\n    - Path edges: {[list(self.graph_edges.keys()).index(self.decision_edges_list[k])+1 for k in range(len(self.shortest_path_ambulance_patient)) if self.shortest_path_ambulance_patient[k] == 1.0]}"+\
                                         f"\n    - Total {self.optimization_type} cost: {total_relative_cost_ambulance_patient} ({total_absolute_cost_ambulance_patient} {measure_units})"+\
@@ -782,7 +782,7 @@ class networks_app_window():
                 measure_units = "m"
                 total_absolute_cost_ambulance_patient = round(self.grid_units_size * total_relative_cost_ambulance_patient, 2)
                 total_absolute_cost_patient_hospital = round(self.grid_units_size * total_relative_cost_patient_hospital, 2)
-            self.write_information_box("Solved", "green", f"Shortest paths found with {self.optimization_type} as an optimization criterion!"+\
+            self.write_information_box("Solved", "green", f"Shortest paths found with {self.optimization_type} being the optimization criterion!"+\
                             f"\n1) Shortest path: ambulance → patient"+\
                             f"\n    - Path edges: {edges_on_shortest_path_ambulance_patient}"+\
                             f"\n    - Total {self.optimization_type} cost: {total_relative_cost_ambulance_patient} ({total_absolute_cost_ambulance_patient} {measure_units})"+\
@@ -800,10 +800,10 @@ class networks_app_window():
         path_1_mod_sol_text_rows, path_2_mod_sol_text_rows = 18, 18
         path_1_mod_sol_text_columns, path_2_mod_sol_text_columns = 45, 45
         menu_label(self.solve_mode_panel, "Path 1 model and solution:", f"Arial {solve_mode_panel_font} bold underline", "gold", solve_mode_panel_bg_color, p1t_x * solve_mode_panel_width, p1t_ord * solve_mode_panel_height / (solve_mode_panel_rows + 1) - 10)
-        self.path_1_mod_sol_text_box = tk.Text(self.solve_mode_panel, font = 'Calibri 10 bold', width = path_1_mod_sol_text_columns, height = path_1_mod_sol_text_rows)
+        self.path_1_mod_sol_text_box = tk.Text(self.solve_mode_panel, font = 'Calibri 10 bold', width = path_1_mod_sol_text_columns, height = path_1_mod_sol_text_rows, wrap = "word")
         self.path_1_mod_sol_text_box.place(x = p1m_x * solve_mode_panel_width, y = p1m_ord * solve_mode_panel_height / (solve_mode_panel_rows + 1), anchor = "center")
         menu_label(self.solve_mode_panel, "Path 2 model and solution:", f"Arial {solve_mode_panel_font} bold underline", "gold", solve_mode_panel_bg_color, p2t_x * solve_mode_panel_width, p2t_ord * solve_mode_panel_height / (solve_mode_panel_rows + 1) - 10)
-        self.path_2_mod_sol_text_box = tk.Text(self.solve_mode_panel, font = 'Calibri 10 bold', width = path_2_mod_sol_text_columns, height = path_2_mod_sol_text_rows)
+        self.path_2_mod_sol_text_box = tk.Text(self.solve_mode_panel, font = 'Calibri 10 bold', width = path_2_mod_sol_text_columns, height = path_2_mod_sol_text_rows, wrap = "word")
         self.path_2_mod_sol_text_box.place(x = p2m_x * solve_mode_panel_width, y = p2m_ord * solve_mode_panel_height / (solve_mode_panel_rows + 1), anchor = "center")
         self.show_mod_sol_button = menu_button(self.solve_mode_panel, self.show_mod_sol, f"Calibri {solve_mode_panel_font + 5} bold", "white", solve_mode_panel_bg_color, smsb_x * solve_mode_panel_width, smsb_ord * solve_mode_panel_height / (solve_mode_panel_rows + 1), self.change_parameters_actions).button
         self.show_problems_model_solution_IP("model")
